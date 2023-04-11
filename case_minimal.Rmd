@@ -44,14 +44,13 @@ library(gtsummary)
 
 这里是小学生50米短跑的成绩见表 \@ref(tab:tab01)
 
-```{r, tab.id = "tab01"}
+```{r, tab.id = "tab01", tab.cap = "小学生50米短跑的成绩"}
 d <- read_csv("./data/data-50m.csv")
 
 d %>% 
-  slice_head(n = 10) %>% 
+  slice_head(n = 8) %>% 
   flextable::flextable() %>% 
-  flextable::autofit() %>% 
-  flextable::set_caption("小学生50米短跑的成绩")
+  flextable::autofit()
 ```
 
 
@@ -71,8 +70,18 @@ d %>%
   ) %>% 
   flextable::flextable() %>% 
   flextable::autofit() %>% 
-  flextable::set_caption("小学生50米短跑的平均成绩")
+  flextable::set_caption("平均速度和体重")
 ```
+
+
+年龄分布情况见表 \@ref(tab:tabage)
+
+```{r, tab.id = "tabage", tab.cap = "年龄分布情况"}
+d %>% 
+  mutate(Age = as.factor(Age)) %>% 
+  gtsummary::tbl_summary()
+```
+
 
 ## 图形探索
 
@@ -123,10 +132,9 @@ mod <- lm(Y ~ Weight + Age, data = d)
 
 多元线性回归模型的输出结果见表 \@ref(tab:tabcoef)
 
-```{r, tab.id='tabcoef'}
+```{r, tab.id='tabcoef', tab.cap = "多元线性回归模型系数"}
 mod %>% 
-  gtsummary::tbl_regression() %>% 
-  gtsummary::modify_caption("多元线性回归模型系数")
+  gtsummary::tbl_regression()
 ```
 
 
