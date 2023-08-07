@@ -70,7 +70,9 @@ d %>%
   ) %>% 
   flextable::flextable() %>% 
   flextable::autofit() %>% 
-  flextable::set_caption("平均速度和体重")
+  flextable::set_caption("平均速度和体重") %>% 
+  flextable::add_footer_lines(
+    "这是小学生的数据.")
 ```
 
 
